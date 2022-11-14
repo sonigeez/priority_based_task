@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:priority/todo_provider.dart';
+import 'package:priority/services/todo_provider.dart';
 import 'package:provider/provider.dart';
-import 'add_todo.dart';
-import 'custom_card.dart';
+import 'Views/add_todo.dart';
+import 'Views/widgets/custom_card.dart';
 
 void main() {
   runApp(const MyApp());
