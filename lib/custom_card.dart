@@ -61,56 +61,41 @@ class _CustomCardState extends State<CustomCard> {
                     future: todoList,
                     builder: (BuildContext context,
                         AsyncSnapshot<List<dynamic>> snapshot) {
-                      switch (snapshot.connectionState) {
-                        case ConnectionState.waiting:
-                          return const Text('Loading....');
-                        default:
-                          if (snapshot.hasError) {
-                            return Text('Error: ${snapshot.error}');
-                          } else {
-                            return ListView.builder(
-                              itemCount: snapshot.data?.length,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  color: Colors.white.withOpacity(0.1),
-                                  padding: const EdgeInsets.all(16),
-                                  child: Row(
-                                    children: [
-                                      Text((index + 1).toString()),
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                35,
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          snapshot.data?[index].todo,
-                                          style: const TextStyle(
-                                              color: Colors.black),
-                                        ),
-                                      ),
-                                      // SizedBox(
-                                      //   width:
-                                      //       MediaQuery.of(context).size.width /
-                                      //           20,
-                                      // ),
-                                      IconButton(
-                                        icon: const Icon(Icons.delete),
-                                        color: Colors.white.withOpacity(0.4),
-                                        onPressed: () {
-                                          setState(() {
-                                            todospro.deleteTodo(
-                                                snapshot.data?[index]);
-                                          });
-                                        },
-                                      )
-                                    ],
+                      return ListView.builder(
+                        itemCount: snapshot.data?.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            color: Colors.white.withOpacity(0.1),
+                            padding: const EdgeInsets.all(16),
+                            child: Row(
+                              children: [
+                                Text((index + 1).toString()),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width / 35,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    snapshot.data?[index].todo,
+                                    style: const TextStyle(color: Colors.black),
                                   ),
-                                );
-                              },
-                            );
-                          }
-                      }
+                                ),
+                                // SizedBox(
+                                //   width:
+                                //       MediaQuery.of(context).size.width /
+                                //           20,
+                                // ),
+                                IconButton(
+                                  icon: const Icon(Icons.delete),
+                                  color: Colors.white.withOpacity(0.4),
+                                  onPressed: () async {
+                                    todospro.deleteTodo(snapshot.data?[index]);
+                                  },
+                                )
+                              ],
+                            ),
+                          );
+                        },
+                      );
                     },
                   ),
                 ),

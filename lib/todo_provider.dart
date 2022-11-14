@@ -41,7 +41,9 @@ class TodosProvider with ChangeNotifier {
 
   void deleteTodo(Todo todo) async {
     await isar?.writeTxn(() async {
-      await isar!.todos.delete(todo.id); // or delete operations
+      await isar!.todos.delete(todo.id);
+      notifyListeners();
+      // or delete operations
     });
   }
 
