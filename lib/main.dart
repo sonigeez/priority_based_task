@@ -31,40 +31,26 @@ class HomePage extends StatelessWidget {
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
       floatingActionButton: Center(
-        child: InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const AddTodo()),
-            );
-          },
-          child: Hero(
-            tag: "button",
-            child: Material(
-              type: MaterialType.transparency,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                      width: 2, color: Colors.brown.withOpacity(0.42)),
-                  shape: BoxShape.circle,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      border:
-                          Border.all(color: Colors.blueAccent.withOpacity(0.2)),
-                      color: Colors.blueGrey,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.add,
-                      color: Colors.white,
-                      size: 29,
-                    ),
-                  ),
-                ),
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(width: 2, color: Colors.brown.withOpacity(0.42)),
+            shape: BoxShape.circle,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FloatingActionButton(
+              heroTag: "button",
+              elevation: 30,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AddTodo()),
+                );
+              },
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 29,
               ),
             ),
           ),
@@ -74,16 +60,16 @@ class HomePage extends StatelessWidget {
         children: [
           Expanded(
             child: Row(
-              children: const [
-                CustomCard(
-                  color: Color(0xff16B0A4),
+              children: [
+                const CustomCard(
+                  color: Colors.red,
                   label: "Urgent And Important",
                   margin: EdgeInsets.only(right: 1, bottom: 1),
                 ),
                 CustomCard(
-                  color: Color(0xffB5CE3B),
+                  color: Colors.yellow.shade400,
                   label: "Not Urgent But Important",
-                  margin: EdgeInsets.only(left: 1, bottom: 1),
+                  margin: const EdgeInsets.only(left: 1, bottom: 1),
                 ),
               ],
             ),
@@ -92,12 +78,12 @@ class HomePage extends StatelessWidget {
             child: Row(
               children: const [
                 CustomCard(
-                  color: Color(0xffDE177B),
+                  color: Colors.green,
                   label: "Urgent But Not Important",
                   margin: EdgeInsets.only(right: 1, top: 1),
                 ),
                 CustomCard(
-                  color: Color(0xffE85624),
+                  color: Colors.blueAccent,
                   label: "Not Urgent Not Important",
                   margin: EdgeInsets.only(left: 1, top: 1),
                 ),
