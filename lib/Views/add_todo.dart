@@ -59,24 +59,27 @@ class _AddTodoState extends State<AddTodo> {
             ),
             Center(
               child: Builder(builder: (BuildContext newContext) {
-                return ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blueGrey, // Background color
-                  ),
-                  onPressed: () async {
-                    if (dropDownValue != null && todoController.text != "") {
-                      final newTodo =
-                          Todo(label: dropDownValue, todo: todoController.text);
-                      newTodo.todo = todoController.text;
-                      newTodo.label = dropDownValue;
-                      newContext.read<TodosProvider>().addTodo(newTodo);
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: const Text(
-                    "Add",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                return Hero(
+                  tag: "button",
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueGrey, // Background color
+                    ),
+                    onPressed: () async {
+                      if (dropDownValue != null && todoController.text != "") {
+                        final newTodo = Todo(
+                            label: dropDownValue, todo: todoController.text);
+                        newTodo.todo = todoController.text;
+                        newTodo.label = dropDownValue;
+                        newContext.read<TodosProvider>().addTodo(newTodo);
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: const Text(
+                      "Add",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 );
               }),
