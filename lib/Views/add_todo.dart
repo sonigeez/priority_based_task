@@ -19,8 +19,7 @@ class _AddTodoState extends State<AddTodo> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.blueGrey,
-            title: const Text("Add Your todo")),
+            backgroundColor: Colors.blue, title: const Text("Add Your todo")),
         body: Padding(
           padding: EdgeInsets.only(
               top: MediaQuery.of(context).size.height / 7,
@@ -63,7 +62,7 @@ class _AddTodoState extends State<AddTodo> {
                   tag: "button",
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueGrey, // Background color
+                      backgroundColor: Colors.blue, // Background color
                     ),
                     onPressed: () async {
                       if (dropDownValue != null && todoController.text != "") {

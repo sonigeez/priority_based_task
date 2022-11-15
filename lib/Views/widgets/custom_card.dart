@@ -71,10 +71,11 @@ class _CustomCardState extends State<CustomCard> {
                                 children: [
                                   SlidableAction(
                                     backgroundColor:
-                                        Colors.red.withOpacity(0.7),
+                                        Colors.white.withOpacity(0.1),
                                     onPressed: ((context) => todospro
                                         .deleteTodo(snapshot.data?[index])),
                                     icon: Icons.delete,
+                                    foregroundColor: Colors.white,
                                   )
                                 ]),
                             child: Container(
