@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:priority/services/todo_provider.dart';
 import 'package:provider/provider.dart';
 import 'Views/add_todo.dart';
@@ -15,7 +16,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
         create: (context) => TodosProvider(),
-        child: const MaterialApp(
+        child: MaterialApp(
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            textTheme: GoogleFonts.almaraiTextTheme(
+              Theme.of(context).textTheme,
+            ),
+          ),
           home: SafeArea(child: HomePage()),
         ));
   }
