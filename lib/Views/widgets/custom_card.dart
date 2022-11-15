@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:priority/services/todo_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,7 @@ class _CustomCardState extends State<CustomCard> {
   late TodosProvider todospro;
 
   bool visibility = false;
-  var todoList;
+  dynamic todoList;
 
   @override
   Widget build(BuildContext context) {
@@ -64,34 +65,37 @@ class _CustomCardState extends State<CustomCard> {
                       return ListView.builder(
                         itemCount: snapshot.data?.length,
                         itemBuilder: (context, index) {
-                          return Container(
-                            color: Colors.white.withOpacity(0.1),
-                            padding: const EdgeInsets.all(16),
-                            child: Row(
-                              children: [
-                                Text((index + 1).toString()),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width / 35,
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    snapshot.data?[index].todo,
-                                    style: const TextStyle(color: Colors.black),
+                          return Slidable(
+                            endActionPane: ActionPane(
+                                motion: const ScrollMotion(),
+                                children: [
+                                  SlidableAction(
+                                    backgroundColor:
+                                        Colors.red.withOpacity(0.7),
+                                    onPressed: ((context) => todospro
+                                        .deleteTodo(snapshot.data?[index])),
+                                    icon: Icons.delete,
+                                  )
+                                ]),
+                            child: Container(
+                              color: Colors.white.withOpacity(0.1),
+                              padding: const EdgeInsets.all(16),
+                              child: Row(
+                                children: [
+                                  Text((index + 1).toString()),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width / 35,
                                   ),
-                                ),
-                                // SizedBox(
-                                //   width:
-                                //       MediaQuery.of(context).size.width /
-                                //           20,
-                                // ),
-                                IconButton(
-                                  icon: const Icon(Icons.delete),
-                                  color: Colors.white.withOpacity(0.4),
-                                  onPressed: () async {
-                                    todospro.deleteTodo(snapshot.data?[index]);
-                                  },
-                                )
-                              ],
+                                  Expanded(
+                                    child: Text(
+                                      snapshot.data?[index].todo,
+                                      style:
+                                          const TextStyle(color: Colors.black),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         },
