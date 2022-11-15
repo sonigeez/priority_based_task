@@ -75,7 +75,8 @@ class _CustomCardState extends State<CustomCard> {
                                     onPressed: ((context) => todospro
                                         .deleteTodo(snapshot.data?[index])),
                                     icon: Icons.delete,
-                                    foregroundColor: Colors.white,
+                                    foregroundColor:
+                                        Colors.white.withOpacity(0.6),
                                   )
                                 ]),
                             child: Container(
